@@ -6,18 +6,18 @@ from selenium.webdriver.support import expected_conditions as EC
 # Initialization of web driver
 driver = webdriver.Chrome()
 
-# Navigate to website
+# Launch website
 driver.get("https://the-internet.herokuapp.com/")
 
-# Click "Form Authentication"
-driver.find_element_by_link_text("Form Authentication").click()
+# Click on the "Form Authentication" link
+driver.find_element(By.LINK_TEXT, "Form Authentication").click()
 
 # Enter username and password
-driver.find_element_by_id("username").send_keys("tomsmith")
-driver.find_element_by_id("password").send_keys("SuperSecretPassword!")
+driver.find_element(By.ID, "username").send_keys("tomsmith")
+driver.find_element(By.ID, "password").send_keys("SuperSecretPassword!")
 
 # Click "Log in" button
-driver.find_element_by_css_selector("button[type='submit']").click()
+driver.find_element(By.XPATH, "//*[@id='login']/button").click()
 
 # Wait for success message to be displayed
 success_message = WebDriverWait(driver, 10).until(
