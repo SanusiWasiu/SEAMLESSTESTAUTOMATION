@@ -3,3 +3,4 @@ login.py
 loginClass.py
 .pytest_cache
 .vscode
+# credentials.py

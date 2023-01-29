@@ -1,5 +1,6 @@
 import unittest
 import sys
+from . import credentials
 sys.path.append(sys.path[0] + "/....")
 
 from Src.TestBase.webDriverSetUp import WebDriverSetup
@@ -11,7 +12,7 @@ class TestLogin(WebDriverSetup):
         driver = self.driver
         form_page = FormPage(driver)
         form_page.load_page()
-        form_page.login("tomsmith", "SuperSecretPassword!")
+        form_page.login(credentials.VALID_USERNAME, credentials.VALID_PASSWORD)
         success_message = form_page.get_alert()
         # Assert success message is displayed
         self.assertIn("You logged into a secure area!", success_message.text)
@@ -24,7 +25,7 @@ class TestLogin(WebDriverSetup):
         driver = self.driver
         form_page = FormPage(driver)
         form_page.load_page()
-        form_page.login("thomas", "SecretPassword!")
+        form_page.login(credentials.INVALID_USERNAME, credentials.INVALID_PASSWORD)
         error_message = form_page.get_alert()
         # Assert error message is displayed
         assert "Your username is invalid!" in error_message.text
